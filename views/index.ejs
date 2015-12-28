@@ -1,0 +1,68 @@
+<!-- views/index.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<style>
+		body 		{ padding-top:50px;
+		background-color: white;}
+		#logo{
+			background-image: url(../data/images/Logo_HD.png);
+			width: 500px;
+			height: 500px;
+			background-size: contain;
+			margin-left: 20px;
+		}
+		#loginPanel{
+			width: 700px;
+			height:700px;
+			animation-name: opening;
+	    animation-duration: 2s;
+		}
+		.standardButton{
+			display: block;
+			margin-top: 10px;
+			width: 170px;
+			border-color: rgba(139, 1, 1, 0.21);
+			background-color: white;
+			margin-right: auto;
+			margin-left: auto;
+			color:rgba(101, 29, 29, 0.71);
+			-webkit-transition: width 0.5s, background-color 0.5s, color 0.5s, border-color 0.5s;
+		}
+		.standardButton:hover{
+			border-color: white;
+			color: white;
+			font-style: bold;
+			background-color: #d9534f;
+			width:200px;
+		}
+		.btn-danger{
+			color:white;
+			width: 170px;
+			-webkit-transition: width 0.5s, background-color 0.5s, color 0.5s, border-color 0.5s;
+		}
+		.btn-danger:hover{
+			width:200px;
+		}
+		@keyframes opening {
+	    0%   {opacity: 0;}
+	    100% {opacity: 1;}
+	}
+	</style>
+</head>
+<body>
+<div class="container" id="loginPanel">
+	<div class="jumbotron text-center"  style="background-color:transparent;">
+		<div id="logo" ></div>
+		<a href="/login" class="btn btn-default standardButton"> Login </a>
+		<a href="/signup" class="btn btn-default standardButton"> Sign up </a>
+		<a href="/auth/google" class="btn btn-danger"><span class="fa fa-google-plus"></span> Sign in with Google</a>
+	</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Sign up</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+		body 		{ padding-top:80px; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+
+	<h1>Sign Up</h1>
+
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- LOGIN FORM -->
+	<form action="/signup" method="post">
+		<div class="form-group">
+			<label>User Name</label>
+			<input type="text" class="form-control" name="username" placeholder="User Name">
+		</div>
+		<div class="form-group">
+			<label>Email</label>
+			<input type="text" class="form-control" name="email" placeholder="Email address">
+		</div>
+		<div class="form-group">
+			<label>Department</label>
+			<select name="department" class="form-control">
+			  <option value="Engineering">Engineering/CS</option>
+			  <option value="Fiance and Business">Fiance and Business</option>
+			  <option value="Arts and Scienes">Arts and Scienes</option>
+			  <option value="Medicine">Medicine</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Area of Study</label>
+			<select name="specialization" class="form-control">
+			<option value="General Purposes">General Purposes</option>
+			<option value="Grad Students Research/Experiments">Grad Students Research/Experiments</option>
+			<option value="Undergrad Students Projects/Experiements">Undergrad Students Projects/Experiements</option>
+			<option value="Researchers and Professors">Researchers and Professors</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Password</label>
+			<input type="password" class="form-control" name="password" placeholder="Enter Password">
+		</div>
+		<div class="form-group">
+			<label>Confirm Password</label>
+			<input type="password" class="form-control" name="password2" placeholder="Confirm Password">
+		</div>
+
+		<button type="submit" class="btn btn-primary btn-md">Sign up</button>
+	</form>
+
+	<hr>
+
+	<p>Already have an account ? <a href="/login">Log in</a></p>
+	<p>Go to <a href="/">Homepage</a></p>
+
+</div>
+
+</div>
+</body>
+</html>

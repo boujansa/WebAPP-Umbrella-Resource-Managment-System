@@ -1,0 +1,78 @@
+<!-- views/listLabs.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Lab List</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<style>
+		body 		{ padding-top:80px; word-wrap:break-word; }
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-left">
+		<h1>Manage users in <%= lab.labname %></h1>
+		<p>Go to <a href="/profile">Homepage</a></p>
+		<p>Go Back to <a href="/listThisLab?specificLab=<%=lab.labname%>"><%=lab.labname%></a></p>
+	</div>
+
+
+	<div class="row">
+
+		<!-- Membership Request INFORMATION -->
+		<h3>List of Membership Requests</h3>
+		<div class="col-sm-6">
+			<div class="well">
+
+				<!-- show any messages that come back -->
+				<% if (message != null) { %>
+				<div class="alert alert-success"><%= message %></div>
+				<% } %>
+
+					<ul>
+						<% if(lab != null) {%>
+							<% for(var i=0; i<lab.membership_requests.length; i++) {%>
+   							<h4>User Name     : <%= lab.membership_requests[i].name %></h4>
+								<b>User Email    :</b> <%= lab.membership_requests[i].email %>
+								<br/>
+	   						<a href="/approveThisUser?email=<%=lab.membership_requests[i].email%>&name=<%=lab.membership_requests[i].name%>&labname=<%=lab.labname %>" class="btn btn-primary btn-sm">Approve User</a>
+
+							<% } %>
+						<% } %>
+					</ul>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<!-- Lab member INFORMATION -->
+		<h3>List of Current Lab Members</h3>
+		<div class="col-sm-6">
+			<div class="well">
+
+				<!-- show any messages that come back -->
+				<% if (message != null) { %>
+				<div class="alert alert-success"><%= message %></div>
+				<% } %>
+
+					<ul>
+						<% if(lab != null) {%>
+							<% for(var i=0; i<lab.members.length; i++) {%>
+								<h4>User Name     : <%= lab.members[i].name %></h4>
+								<b>User Email        :</b> <%= lab.members[i].email %>
+								<br/>
+	   						<a href="/removeThisUser?email=<%=lab.members[i].email%>&name=<%=lab.members[i].name%>&labname=<%=lab.labname %>" class="btn btn-primary btn-sm">Remove User</a>
+							<% } %>
+						<% } %>
+					</ul>
+
+			</div>
+		</div>
+	</div>
+
+</div>
+</body>
+</html>

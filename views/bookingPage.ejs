@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Booking Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <h2>Booking Table</h2>
+  <h3>Please select your time slot ..</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Day of Booking</th>
+        <th>Available Time Slots</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%for(var i=0;i<numBookingDays;i++) {%>
+        <tr>
+          <td>Day <%=i+1%></td>
+          <td>
+            <% if(booking == null || booking[i] == null) { for(var j=0;j<numBookingSlots;j++) {%>
+              <p>Time Slot <%=j+1%>: <a href="/bookThisEquip/<%=i%>/<%=j%>" class="btn btn-primary btn-sm">Book</a></p>
+            <% } } else { for(var j=0;j<numBookingSlots;j++) {%>
+
+                <% if(booking[i].slot[j].booked) { %>
+                  <p>Time Slot <%=j+1%>: Booked by <%=booking[i].slot[j].bookedBy%></p>
+                <% } else { %>
+                  <p>Time Slot <%=j+1%>: <a href="/bookThisEquip/<%=i%>/<%=j%>" class="btn btn-primary btn-sm">Book</a></p>
+                <%}%>
+            <% } }%>
+          </td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <br/>
+  <a href="/listThisLab?specificLab=<%=lab.labname%>" class="btn btn-primary btn-sm">Back to Lab</a>
+  <br/>
+</div>
+
+</body>
+</html>

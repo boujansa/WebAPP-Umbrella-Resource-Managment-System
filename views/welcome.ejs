@@ -1,0 +1,33 @@
+<!-- views/welcome.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Welcome</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="container" id="actionPanel">
+	<div>
+		<form action="/searchThisLab" method="get">
+			<input type="text" id="inputBar" class="form-control" name="specificLab" placeholder="Search For Lab">
+			<button type="submit" class="btn btn-default standardButton" id="searchButton">Search</button>
+		</form>
+		<div id="actionGroup">
+			<a href="/createLab" class="btn btn-default actionButton"></span>Create a new Lab</a>
+			<a href="/listLabs" class="btn btn-default actionButton"></span>List all Labs</a>
+			<a href="/listUsers?auto=false" class="btn btn-default actionButton"></span>List all Users</a>
+			<a href="/listMessages" class="btn btn-default actionButton"></span>View My Messages</a>
+		</div>
+		<!-- show any messages that come back -->
+		<% if (message != null) { %>
+		<!--div class="alert alert-success"><%= message %></div-->
+		<div class="alert alert-success" style="display:block; position:absolute;top:43px;height:50px;"><%= message%></div>
+		<% } %>
+		</div>
+</div>
+<% include profile %>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{
+    "name": "UmbrellaProject",
+    "version": "0.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "~4.12.3",
+        "morgan": "~1.5.2",
+        "connect-busboy": "*",
+        "cookie-parser": "latest",
+        "express-session": "latest",
+        "mongoose": "latest",
+        "ejs": "latest",
+        "body-parser": "latest",
+        "passport": "~0.2.1",
+        "passport-local": "~1.0.0",
+        "connect-flash": "~0.1.1",
+        "bcryptjs": "*",
+	"fs": "*",
+        "passport-google-oauth": "~0.2.0",
+	      "mocha":"~1.16.2",
+        "compression":"1.6.0",
+        "helmet": "^0.15.0",
+    	"chai": "^3.2.0",
+    	"chai-http": "^1.0.0",
+	"mocha":"*",
+	"request":"*",
+	"supertest":"*",
+	"superagent":"*"
+    }
+}

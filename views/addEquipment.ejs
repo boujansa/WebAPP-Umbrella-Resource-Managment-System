@@ -1,0 +1,75 @@
+<!-- views/createLab.ejs -->
+<!doctype html>
+<html>
+
+<head>
+    <title>Add NEW Equipment</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+    body {
+        padding-top: 80px;
+    }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3">
+            <h1>Fill In Equipment Details</h1>
+            <!-- Add Item Form -->
+            <form action="/addEquipment" method="post">
+                <div class="form-group">
+                    <label>Equipment Name</label>
+                    <input type="text" class="form-control" name="name" placeholder="Equipment Name">
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <select name="quantity" class="form-control">
+              			<option value="1">1</option>
+              			<option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+              			</select>
+                </div>
+                <div class="form-group">
+                    <label>Lab Use Only? (Yes or No)</label>
+                    <select name="hidden" class="form-control">
+              			<option value="No">No</option>
+              			<option value="Yes">Yes</option>
+              			</select>
+                </div>
+                <div class="form-group">
+                    <label>Number of Days available to Book in Advance</label>
+                    <select name="numBookingDays" class="form-control">
+              			<option value="1">1</option>
+              			<option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+              			</select>
+                </div>
+                <div class="form-group">
+                    <label>Number of Available Time Slots per Day</label>
+                    <select name="numBookingSlots" class="form-control">
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                    <option value="6">6</option>
+                    <option value="8">8</option>
+                    <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Special Notes</label>
+                    <input type="text" class="form-control" name="notes" placeholder="Notes about this item">
+                </div>
+                <!-- Do input validation here too... when the UI is coming together. -->
+                <button type="submit" class="btn btn-primary btn-md">Add Item</button>
+            </form>
+            <hr>
+            <p>Go to <a href="/profile">Homepage</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

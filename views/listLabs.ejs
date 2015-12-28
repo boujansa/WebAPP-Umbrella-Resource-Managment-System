@@ -1,0 +1,121 @@
+<!-- views/listLabs.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Lab List</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-left">
+		<h1>Labs in the Database</h1>
+		<p>Go to <a href="/profile">Homepage</a></p>
+		<p>Logged in as: <%=user.email%></p>
+	</div>
+
+
+	<div class="row">
+
+		<% if (labs.length == 0) { %>
+		<div class="alert alert-success">System does not have any labs</div>
+		<% } %>
+
+		<!-- show any messages that come back -->
+		<% if (message != null) { %>
+		<div class="alert alert-success"><%= message %></div>
+		<% } %>
+
+		<!-- LAB INFORMATION -->
+		<h3>List of Labs: </h3>
+		<div class="col-sm-6">
+			<div class="well">
+
+					<ul>
+						<% if(labs != null) {%>
+
+
+							<%if(searchOne == true) { %>
+
+
+								<%if(labs.admin_approve == 'true' || user.usertype == 'superadmin') {%>
+									<form action="/joinThisLab?labname=<%=labs.labname%>" method="post">
+			   							<h3><b>Lab Name    :</b> <%= labs.labname %></h3>
+			   							<li><b>Department  :</b> <%= labs.department %></li>
+				   						<li><b>Lab Admin   :</b> <%= labs.admin_name %></li>
+				   						<li><b>Description :</b> <%= labs.description %></li>
+				   						<li><b>Created on  :</b> <%= labs.creation_date %></li>
+									<li><b>Admin Approved  :</b> <%= labs.admin_approve %></li>
+
+									<!-- Only super admin can see this option -->
+									<% if(user.usertype == 'superadmin' && labs.admin_approve == 'false') {%>
+									<a href="/approveThisLab?specificLab=<%=labs.labname%>" class="btn btn-primary btn-sm">Approve Lab</a>
+									<% } %>
+
+									<% var j %>
+									<% for(j=0; j<user.labs.length; j++) {%>
+										<% if(labs.labname == user.labs[j]) {%>
+											 <% break%>
+											 <% } %>
+									<% } %>
+
+									<!-- iif the user is already a member of the lab he can view it ,
+									otherwise he can just send a request to join the lab -->
+									<% if( j != user.labs.length || user.usertype == 'superadmin') {%>
+										<a href="/listThisLab?specificLab=<%=labs.labname%>" class="btn btn-primary btn-sm">View Lab</a>
+									<% } else { %>
+												<button type="submit" class="btn btn-primary btn-sm" >Join This Lab</button>
+									<% } %>
+									</form>
+		   							<br>
+
+
+
+
+
+
+							<!-- Lab is shown here iff it is approved by superadmin  i.e admin_approve == 'true' -->
+							<% } } else {for(var i=0; i<labs.length && (labs[i].admin_approve == 'true' || user.usertype == 'superadmin'); i++) {%>
+								<form action="/joinThisLab?labname=<%=labs[i].labname%>" method="post">
+		   							<h3><b>Lab Name    :</b> <%= labs[i].labname %></h3>
+		   							<li><b>Department  :</b> <%= labs[i].department %></li>
+			   						<li><b>Lab Admin   :</b> <%= labs[i].admin_name %></li>
+			   						<li><b>Description :</b> <%= labs[i].description %></li>
+			   						<li><b>Created on  :</b> <%= labs[i].creation_date %></li>
+								<li><b>Admin Approved  :</b> <%= labs[i].admin_approve %></li>
+
+								<!-- Only super admin can see this option -->
+								<% if(user.usertype == 'superadmin' && labs[i].admin_approve == 'false') {%>
+								<a href="/approveThisLab?specificLab=<%=labs[i].labname%>" class="btn btn-primary btn-sm">Approve Lab</a>
+								<% } %>
+
+								<% var j %>
+								<% for(j=0; j<user.labs.length; j++) {%>
+									<% if(labs[i].labname == user.labs[j]) {%>
+										 <% break%>
+										 <% } %>
+								<% } %>
+
+								<!-- iif the user is already a member of the lab he can view it ,
+								otherwise he can just send a request to join the lab -->
+								<% if( j != user.labs.length || user.usertype == 'superadmin') {%>
+									<a href="/listThisLab?specificLab=<%=labs[i].labname%>" class="btn btn-primary btn-sm">View Lab</a>
+								<% } else { %>
+											<button type="submit" class="btn btn-primary btn-sm" >Join This Lab</button>
+								<% } %>
+							</form>
+	   						<br>
+							<% } }%>
+						<% } %>
+					</ul>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+</body>
+</html>
